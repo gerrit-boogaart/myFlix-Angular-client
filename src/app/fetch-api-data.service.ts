@@ -116,7 +116,7 @@ export class FetchApiDataService {
   // edit user by username
   updateUser(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.put(apiUrl + 'users/:Username', {
+    return this.http.get(apiUrl + 'users/:Username', {
       headers: new HttpHeaders({
         Authorization: 'Bearer' + token,
       })
@@ -165,8 +165,6 @@ export class FetchApiDataService {
       catchError(this.handleError)
     );
   }
-
-
 
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
