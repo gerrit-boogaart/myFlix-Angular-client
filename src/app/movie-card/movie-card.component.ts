@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -13,6 +14,7 @@ export class MovieCardComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
+    public navbar: NavBarComponent,
   ) { }
 
   ngOnInit(): void {
