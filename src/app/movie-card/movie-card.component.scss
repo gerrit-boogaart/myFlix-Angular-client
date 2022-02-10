@@ -1,8 +1,6 @@
 .movie-list {
 	display: flex;
 	overflow: auto;
-	// line-height: 400px;
-	white-space: nowrap;
 }
 
 .movie-card {
@@ -10,9 +8,18 @@
  	width: 300px;
  	height: 500px;
  	margin: 10px;
+	 padding-bottom: 30px;
+}
+
+.card-title {
+	margin-bottom: 15px;
 }
 
 .movie-img {
 	width: 280px;
-	height: auto;
+	height: 420px;
+}
+
+.card-actions {
+	text-align: center;
 }
