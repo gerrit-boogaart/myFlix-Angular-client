@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FetchApiDataService } from '../fetch-api-data.service';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-genre-card',
@@ -9,21 +8,12 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 
 export class GenreCardComponent implements OnInit {
-  genre: {} = {};
   constructor(
-    public fetchApiData: FetchApiDataService,
-    public dialogRef: MatDialogRef<GenreCardComponent>,
+    @Inject(MAT_DIALOG_DATA)
+    public data: { name: string; description: string; }
     // public genre: {name: string, description: string}
   ) { }
 
   ngOnInit(): void {
-  }
-
-  showGenre(): void {
-    this.fetchApiData.getGenre().subscribe((resp: any) => {
-      this.genre = resp;
-      console.log(resp);
-      return this.genre;
-    })
   }
 }

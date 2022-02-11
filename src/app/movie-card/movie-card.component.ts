@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
-import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { DirectorCardComponent } from '../director-card/director-card.component';
+import { SynopsisCardComponent } from '../synopsis-card/synopsis-card.component';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
@@ -14,7 +15,6 @@ export class MovieCardComponent implements OnInit {
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
-    public navbar: NavBarComponent,
   ) { }
 
   ngOnInit(): void {
@@ -29,8 +29,23 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
-  openGenreDialog(): void {
+  openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
+      data: { name, description },
+      width: '500px'
+    });
+  }
+
+  openDirectorDialog(name: string, bio: string, birth: string): void {
+    this.dialog.open(DirectorCardComponent, {
+      data: { name, bio, birth },
+      width: '500px'
+    });
+  }
+
+  openSynopsisDialog(title: string, director: string, description: string,): void {
+    this.dialog.open(SynopsisCardComponent, {
+      data: { title, director, description },
       width: '500px'
     });
   }

@@ -22,7 +22,9 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { GenreCardComponent } from './genre-card/genre-card.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { DirectorCardComponent } from './director-card/director-card.component';
+import { SynopsisCardComponent } from './synopsis-card/synopsis-card.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
@@ -38,7 +40,9 @@ const appRoutes: Routes = [
     MovieCardComponent,
     WelcomePageComponent,
     GenreCardComponent,
-    NavBarComponent
+    DirectorCardComponent,
+    SynopsisCardComponent,
+    NavigationBarComponent,
   ],
   imports: [
     BrowserModule,
