@@ -4,15 +4,17 @@
 }
 
 .movie-card {
-	border: 1px solid gray;
+	border: 1px solid rgb(199, 199, 199);
  	width: 300px;
- 	height: 500px;
+ 	height: 75%;
  	margin: 10px;
-	 padding-bottom: 30px;
+	//  padding-bottom: 30px;
+	 background-color: rgb(255, 255, 250);
+	 font-family: 'Outfit', sans-serif;
 }
 
 .card-title {
-	margin-bottom: 15px;
+	margin-bottom: 30px;
 }
 
 .movie-img {
@@ -22,4 +24,11 @@
 
 .card-actions {
 	text-align: center;
+
+}
+
+.action-button {
+	font-family: 'Outfit', sans-serif;
+	font-weight: bold;
+	color: black;
 }

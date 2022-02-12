@@ -1,0 +1,30 @@
+.welcome-page-wrapper {
+    margin-top: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+// .welcome-card {
+//     justify-content: center;
+//     display: flex;
+//     flex-wrap: wrap;
+//     border: 1px solid gray;
+//     border-radius: 2px;
+//     width: 500px;
+//     height: 500px;
+// }
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+}
+
+.welcome-page-title, .welcome-button {
+    font-family: 'Outfit', 'sans-serif';
+}
+
+.welcome-button {
+    width: 200px;
+    height: 50px;
+}

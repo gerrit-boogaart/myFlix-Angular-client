@@ -1,8 +1,7 @@
-<div class="movie-list">
-	<mat-card>
-		<mat-dialog-content>
-			<mat-card-title class="card-title">{{ data.name }}</mat-card-title>
-			<mat-card-subtitle>{{ data.description }}</mat-card-subtitle>
-		</mat-dialog-content>
-	</mat-card>
+<div class="genre-dialog-wrapper">
+	<button class="close-button" mat-icon-button color="dark" [mat-dialog-close]="true">
+		<mat-icon class="close">close</mat-icon>
+	</button>
+	<h2 class="genre-name">{{ data.name }}</h2>
+	<h3 class="genre-description">{{ data.description }}</h3>
 </div>
