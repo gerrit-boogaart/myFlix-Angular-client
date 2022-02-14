@@ -19,12 +19,12 @@ export class ProfilePageComponent implements OnInit {
 
   getUserInfo(): void {
     const user = localStorage.getItem('user');
-    if (user){
-    this.fetchApiData.getUser().subscribe((resp: any) => {
-      this.user = resp;
-      console.log(this.user);
-      return this.user;
-    });
-  }
+    if (user) {
+      this.fetchApiData.getUser().subscribe((resp: any) => {
+        this.user = resp;
+        console.log(this.user);
+        return this.user;
+      });
+    }
   }
 }
