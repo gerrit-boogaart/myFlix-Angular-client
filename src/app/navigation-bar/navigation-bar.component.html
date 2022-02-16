@@ -1,9 +1,14 @@
 <div mat-toolbar class="nav-bar-wrapper">
 	<h1 class="page-title">FLIXFIX</h1>
-	<button mat-raised-button class="nav-button" (click)="navigateUserProfile()">
-		My Profile
-	</button>
-	<button mat-raised-button class="nav-button" (click)="userLogout()">
-		Logout
-	</button>
+	<div *ngIf="loggedIn">
+		<button mat-raised-button class="nav-button" (click)="navigateMovies()">
+			Movies
+		</button>
+		<button mat-raised-button class="nav-button" (click)="navigateUserProfile()">
+			My Profile
+		</button>
+		<button mat-raised-button class="nav-button" (click)="userLogout()">
+			Logout
+		</button>
+	</div>
 </div>

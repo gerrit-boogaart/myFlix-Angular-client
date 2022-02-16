@@ -66,7 +66,7 @@ export class FetchApiDataService {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'genres/:Name', {
       headers: new HttpHeaders({
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       })
     }).pipe(
       map(this.extractResponseData),
@@ -79,7 +79,7 @@ export class FetchApiDataService {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'directors/:Name', {
       headers: new HttpHeaders({
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       })
     }).pipe(
       map(this.extractResponseData),
@@ -92,7 +92,7 @@ export class FetchApiDataService {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'users', {
       headers: new HttpHeaders({
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       })
     }).pipe(
       map(this.extractResponseData),
@@ -103,7 +103,10 @@ export class FetchApiDataService {
   // get user by username
   getUser(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'users/:Username', {
+    // take first true value 
+    const user = localStorage.getItem('user') || "{}";
+    const userObject = JSON.parse(user);
+    return this.http.get(apiUrl + 'users/' + userObject.Username, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
@@ -114,11 +117,13 @@ export class FetchApiDataService {
   }
 
   // edit user by username
-  updateUser(): Observable<any> {
+  updateUser(userDetails: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'users/:Username', {
+    const user = localStorage.getItem('user') || "{}";
+    const userObject = JSON.parse(user);
+    return this.http.post(apiUrl + 'users/', userObject.userDetails, {
       headers: new HttpHeaders({
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       })
     }).pipe(
       map(this.extractResponseData),
@@ -132,7 +137,7 @@ export class FetchApiDataService {
     const token = localStorage.getItem('token');
     return this.http.delete(apiUrl + 'users/:Username', {
       headers: new HttpHeaders({
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       })
     }).pipe(
       map(this.extractResponseData),

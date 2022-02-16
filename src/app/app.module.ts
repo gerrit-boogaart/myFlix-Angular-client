@@ -26,11 +26,13 @@ import { DirectorCardComponent } from './director-card/director-card.component';
 import { SynopsisCardComponent } from './synopsis-card/synopsis-card.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { UserUpdateFormComponent } from './user-update-form/user-update-form.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
-  { path: 'user', component: ProfilePageComponent},
+  { path: 'user', component: ProfilePageComponent },
+  { path: 'update', component: UserUpdateFormComponent },
   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
 ];
 
@@ -46,6 +48,7 @@ const appRoutes: Routes = [
     SynopsisCardComponent,
     NavigationBarComponent,
     ProfilePageComponent,
+    UserUpdateFormComponent,
   ],
   imports: [
     BrowserModule,

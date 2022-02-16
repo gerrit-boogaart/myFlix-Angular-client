@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-page',
@@ -11,10 +12,15 @@ export class ProfilePageComponent implements OnInit {
   user: any = {};
   constructor(
     public fetchApiData: FetchApiDataService,
+    public router: Router,
   ) { }
 
   ngOnInit(): void {
     this.getUserInfo()
+  }
+
+  navigateUpdateProfile(): void {
+    this.router.navigate(['update']);
   }
 
   getUserInfo(): void {
@@ -23,7 +29,6 @@ export class ProfilePageComponent implements OnInit {
       this.fetchApiData.getUser().subscribe((resp: any) => {
         this.user = resp;
         console.log(this.user);
-        return this.user;
       });
     }
   }

@@ -1,5 +1,6 @@
-<p>profile-page works!</p>
-<h1>Username: {{user.Username}}</h1>
-<h1>Email: {{user.Email}}</h1>
-<h1>Birthday: {{user.Birthday}}</h1>
-<button mat-raised-button class="update-info-button">Update User Info</button>
+<div class="profile-page-container">
+	<h1 class="profile-field"><strong>Username:</strong> {{user.Username}}</h1>
+	<h1 class="profile-field"><strong>Email:</strong> {{user.Email}}</h1>
+	<h1 class="profile-field"><strong>Birthday:</strong> {{user.Birthday}}</h1>
+	<button mat-raised-button class="update-info-button" (click)="navigateUpdateProfile()">Update User Info</button>
+</div>

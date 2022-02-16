@@ -1,0 +1,20 @@
+<div class="update-page-container">
+	<h1>Update Your Info</h1>
+	<div class="update-form">
+		<h1 class="update-profile-label">Username:</h1><input label="username" placeholder="{{user.Username}}"
+			[(ngModel)]="userDetails.Username" class="update-profile-field" />
+	</div>
+	<div class="update-form">
+		<h1 class="update-profile-label">Password:</h1><input label="password" placeholder="{{user.Password}}"
+			[(ngModel)]="userDetails.Password" class="update-profile-field" />
+	</div>
+	<div class="update-form">
+		<h1 class="update-profile-label">Email:</h1><input label="email" placeholder="{{user.Email}}"
+			[(ngModel)]="userDetails.Email" class="update-profile-field" />
+	</div>
+	<div class="update-form">
+		<h1 class="update-profile-label">Birthday:</h1><input label="birthday" placeholder="{{user.Birthday}}"
+			[(ngModel)]="userDetails.Birthday" class="update-profile-field" />
+	</div>
+	<button mat-raised-button class="update-info-button" (click)="submitUpdate()">Update User Info</button>
+</div>

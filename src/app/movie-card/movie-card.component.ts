@@ -12,6 +12,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
+  favorites: any[] = [];
+  // user: any = localStorage.getItem('user');
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -24,10 +26,19 @@ export class MovieCardComponent implements OnInit {
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      console.log(this.movies);
+      // console.log(this.movies);
       return this.movies;
     });
   }
+
+  // addFavoriteMovie(): void {
+  //   this.fetchApiData.addFavorite().subscribe((resp: any) => {
+  // this.favorites = resp;
+  // console.log(this.favorites)
+  // return this.favorites;
+  //     console.log(this.user);
+  //   })
+  // }
 
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
