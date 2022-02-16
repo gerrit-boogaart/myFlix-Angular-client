@@ -37,12 +37,13 @@ export class UserUpdateFormComponent implements OnInit {
     const user = localStorage.getItem('user');
     if (user) {
       this.fetchApiData.updateUser(this.userDetails).subscribe((response) => {
-        // successful user registration logic
         console.log(response);
         console.log(this.userDetails);
-        this.snackBar.open(response, 'OK', {
+        // localStorage.setItem('user', JSON.stringify(response));
+        this.snackBar.open('User Info Updated!', 'OK', {
           duration: 2000
         });
+        this.router.navigate([user]);
       }, (response) => {
         this.snackBar.open(response, 'OK', {
           duration: 2000
@@ -50,40 +51,5 @@ export class UserUpdateFormComponent implements OnInit {
       });
     }
   }
-
-  // submitUpdate(): void {
-  //   const user = localStorage.getItem('user');
-  //   if (user) {
-  //     this.fetchApiData.updateUser(this.userDetails).subscribe((resp: any) => {
-  //       localStorage.setItem('user', JSON.stringify(resp.userDetails));
-  //       this.snackBar.open('User Details Updated!', 'OK', {
-  //         duration: 2000
-  //       })
-  //       this.router.navigate([user])
-  //       // this.userDetails = resp;
-  //       console.log(this.user);
-  //     }, (response) => {
-  //           this.snackBar.open(response, 'OK', {
-  //             duration: 2000
-  //           })
-  //         });
-  //   }
-  // }
-
-  // userLogin(): void {
-  //   this.fetchApiData.Login(this.userDetails).subscribe((response) => {
-  //     this.dialogRef.close();
-  //     localStorage.setItem('token', response.token);
-  //     localStorage.setItem('user', JSON.stringify(response.user));
-  //     this.snackBar.open('Logged In, Welcome!', 'OK', {
-  //       duration: 2000
-  //     });
-  //     this.router.navigate(['movies']);
-  //   }, (response) => {
-  //     this.snackBar.open(response, 'OK', {
-  //       duration: 2000
-  //     })
-  //   })
-  // }
 
 }

@@ -121,7 +121,7 @@ export class FetchApiDataService {
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user') || "{}";
     const userObject = JSON.parse(user);
-    return this.http.post(apiUrl + 'users/', userObject.userDetails, {
+    return this.http.put(apiUrl + 'users/' + userObject.Username, userDetails, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
