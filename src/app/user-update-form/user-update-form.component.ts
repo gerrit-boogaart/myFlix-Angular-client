@@ -11,7 +11,16 @@ import { Router } from '@angular/router';
 export class UserUpdateFormComponent implements OnInit {
   user: any = {};
 
-  @Input() userDetails = { Username: '', Password: '', Email: '', Birthday: '' };
+  @Input() updatedUserData = { Username: '', Email: '', Birthday: '' };
+
+  userDetails: any = {
+    Username: this.user.Username,
+    Password: this.user.Password,
+    Email: this.user.Email,
+    Birthday: this.user.Birthday,
+  }
+
+  // @Input() userDetails = { Username: '', Password: '', Email: '', Birthday: '' };
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -35,8 +44,20 @@ export class UserUpdateFormComponent implements OnInit {
 
   submitUpdate(): void {
     const user = localStorage.getItem('user');
+    const updatedUserData = {
+      Username: !this.userDetails.Username
+        ? this.user.Username
+        : this.userDetails.Username,
+      Password: this.user.Password,
+      Email: !this.userDetails.Email
+        ? this.user.Email
+        : this.userDetails.Email,
+      Birthday: !this.userDetails.Birthday
+        ? this.user.Birthday
+        : this.userDetails.Birthday,
+    }
     if (user) {
-      this.fetchApiData.updateUser(this.userDetails).subscribe((response) => {
+      this.fetchApiData.updateUser(this.updatedUserData).subscribe((response) => {
         console.log(response);
         console.log(this.userDetails);
         // localStorage.setItem('user', JSON.stringify(response));
