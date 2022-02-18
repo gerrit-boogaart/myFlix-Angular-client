@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError, catchError } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { MovieCardComponent } from './movie-card/movie-card.component';
 
 const apiUrl = 'https://dcampbellcreative-movie-api.herokuapp.com/';
 
@@ -133,9 +134,11 @@ export class FetchApiDataService {
 
 
   // delete user by username
-  deleteUser(): Observable<any> {
+  deleteUser(currentUser: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.delete(apiUrl + 'users/:Username', {
+    const user = localStorage.getItem('user') || "{}";
+    const userObject = JSON.parse(user);
+    return this.http.delete(apiUrl + 'users/' + userObject.Username, {
       headers: new HttpHeaders({
         Authorization: 'Bearer ' + token,
       })
@@ -146,11 +149,13 @@ export class FetchApiDataService {
   }
 
   // add movie to user favorites
-  addFavorite(): Observable<any> {
+  addFavorite(movieId: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.post(apiUrl + 'users/:Username/movies/:MovieID', {
+    const user = localStorage.getItem('user') || "{}";
+    const userObject = JSON.parse(user);
+    return this.http.post(apiUrl + 'users/' + userObject.Username + '/movies/' + movieId, null, {
       headers: new HttpHeaders({
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       })
     }).pipe(
       map(this.extractResponseData),
@@ -159,9 +164,11 @@ export class FetchApiDataService {
   }
 
   // add movie to user favorites
-  deleteFavorite(): Observable<any> {
+  deleteFavorite(movieId: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.put(apiUrl + 'users/:Username/movies/:MovieID', {
+    const user = localStorage.getItem('user') || "{}";
+    const userObject = JSON.parse(user);
+    return this.http.put(apiUrl + 'users/' + userObject.Username + '/movies/' + movieId, null, {
       headers: new HttpHeaders({
         Authorization: 'Bearer' + token,
       })

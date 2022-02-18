@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 export class UserUpdateFormComponent implements OnInit {
   user: any = {};
 
-  @Input() updatedUserData = { Username: '', Email: '', Birthday: '' };
+  // @Input() updatedUserData = { Username: '', Email: '', Birthday: '' };
+  // @Input() userDetails = { Username: '', Password: '', Email: '', Birthday: '' };
 
   userDetails: any = {
     Username: this.user.Username,
@@ -19,8 +20,6 @@ export class UserUpdateFormComponent implements OnInit {
     Email: this.user.Email,
     Birthday: this.user.Birthday,
   }
-
-  // @Input() userDetails = { Username: '', Password: '', Email: '', Birthday: '' };
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -57,19 +56,40 @@ export class UserUpdateFormComponent implements OnInit {
         : this.userDetails.Birthday,
     }
     if (user) {
-      this.fetchApiData.updateUser(this.updatedUserData).subscribe((response) => {
+      this.fetchApiData.updateUser(updatedUserData).subscribe((response) => {
         console.log(response);
         console.log(this.userDetails);
         // localStorage.setItem('user', JSON.stringify(response));
         this.snackBar.open('User Info Updated!', 'OK', {
           duration: 2000
         });
-        this.router.navigate([user]);
+        this.router.navigate(['user']);
       }, (response) => {
         this.snackBar.open(response, 'OK', {
           duration: 2000
         });
       });
+    }
+  }
+
+  deleteCurrentUser(currentUser: any): void {
+    const user = localStorage.getItem('user'); {
+      if (confirm('Are you sure you want to delete your account?')) {
+        this.fetchApiData.deleteUser(currentUser).subscribe((response) => {
+          console.log(response);
+          // this.user = resp;
+          // console.log(this.user);
+          this.snackBar.open('User Deleted!', 'OK', {
+            duration: 2000
+          });
+          localStorage.clear();
+          this.router.navigate(['welcome']);
+        }, (response) => {
+          this.snackBar.open(JSON.stringify(response), 'OK', {
+            duration: 2000
+          });
+        });
+      }
     }
   }
 

@@ -20,7 +20,8 @@
 					Synopsis
 				</button>
 
-				<mat-icon>favorite_border</mat-icon>
+				<!-- [(ngModel)]="movie._id" -->
+				<mat-icon (click)="addFavoriteMovie(movie._id)">favorite_border</mat-icon>
 			</mat-card-actions>
 		</mat-dialog-content>
 	</mat-card>
