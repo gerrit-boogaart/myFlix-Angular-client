@@ -149,7 +149,7 @@ export class FetchApiDataService {
   }
 
   // add movie to user favorites
-  addFavorite(movieId: any): Observable<any> {
+  addFavorite(movieId: string): Observable<any> {
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user') || "{}";
     const userObject = JSON.parse(user);
@@ -164,13 +164,13 @@ export class FetchApiDataService {
   }
 
   // add movie to user favorites
-  deleteFavorite(movieId: any): Observable<any> {
+  deleteFavorite(movieId: string): Observable<any> {
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user') || "{}";
     const userObject = JSON.parse(user);
     return this.http.put(apiUrl + 'users/' + userObject.Username + '/movies/' + movieId, null, {
       headers: new HttpHeaders({
-        Authorization: 'Bearer' + token,
+        Authorization: 'Bearer ' + token,
       })
     }).pipe(
       map(this.extractResponseData),

@@ -9,7 +9,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
-  styleUrls: ['./movie-card.component.scss']
+  styleUrls: ['./movie-card.component.scss'],
+  // styles: ['favorite { background-color:red }']
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
@@ -30,44 +31,42 @@ export class MovieCardComponent implements OnInit {
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      // console.log(this.movies);
       return this.movies;
     });
   }
 
   getFavoriteMovies(): void {
-    const user = localStorage.getItem('user');
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.user.favorites = resp.FavoriteMovies;
       console.log(this.user.favorites);
     });
   }
 
-  addFavoriteMovie(_id: string): void {
-    const user = localStorage.getItem('user');
-    this.fetchApiData.addFavorite(_id).subscribe((resp: any) => {
-      this.user.favorites = resp.FavoriteMovies;
-      console.log(this.user.favorites)
-      return this.user.favorites;
-    })
-  }
+  favoriteMovie(_id: string): void {
+    const userFavorites = this.user.favorites;
+    // searches array and deletes favorite if movie id already exists
+    if (userFavorites.includes(_id)) {
+      this.fetchApiData.deleteFavorite(_id).subscribe((resp: any) => {
+        this.user.favorites = resp.FavoriteMovies;
+        console.log(this.user.favorites)
+        return this.user.favorites;
+      });
+      this.snackBar.open('Removed from your favorites!', 'OK', {
+        duration: 2000
+      });
+    } else {
+      // add favorite if movie id not present in array
+      this.fetchApiData.addFavorite(_id).subscribe((resp: any) => {
+        this.user.favorites = resp.FavoriteMovies;
+        console.log(this.user.favorites)
+        return this.user.favorites;
+      })
+      this.snackBar.open('Added to your favorites!', 'OK', {
+        duration: 2000
+      });
+    }
 
-  // removeFavoriteMovie(_id: string): void {
-  //   // const user = localStorage.getItem('user');
-  //   const userFavorites = this.user.favorites;
-  //   // const currentFavorites = userFavorites.contains(_id);
-  //   if (userFavorites.contains(_id)) {
-  //     this.fetchApiData.deleteFavorite(_id).subscribe((resp: any) => {
-  //       this.user.favorites = resp.FavoriteMovies;
-  //       console.log(this.user.favorites)
-  //       return this.user.favorites;
-  //     });
-  //   } else {
-  //     this.snackBar.open('User Deleted!', 'OK', {
-  //       duration: 2000
-  //     });
-  //   }
-  // }
+  }
 
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
