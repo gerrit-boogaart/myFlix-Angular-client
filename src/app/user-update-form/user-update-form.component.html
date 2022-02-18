@@ -1,5 +1,5 @@
 <div class="update-page-container">
-	<h1>Update Your Info</h1>
+	<h1 class="update-page-title">Update Your Info</h1>
 	<div class="update-form">
 		<h1 class="update-profile-label">Username:</h1><input label="username" placeholder="{{user.Username}}"
 			[(ngModel)]="userDetails.Username" class="update-profile-field" />
@@ -17,7 +17,7 @@
 			[(ngModel)]="userDetails.Birthday" class="update-profile-field" />
 	</div>
 	<!-- <div class="action-buttons"> -->
-	<button mat-raised-button class="update-info-button" (click)="submitUpdate()">Update User Info</button>
-	<button mat-raised-button class="delete-user-button" (click)="deleteCurrentUser({user})">Delete User</button>
+	<button mat-raised-button id="update-info-button" (click)="submitUpdate()">Update User Info</button>
+	<button mat-raised-button id="delete-user-button" (click)="deleteCurrentUser({user})">Delete User</button>
 	<!-- </div> -->
 </div>

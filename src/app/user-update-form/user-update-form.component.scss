@@ -3,6 +3,10 @@
 	flex-flow: column;
 	flex-wrap: wrap;
 	text-align: center;
+	justify-content: center;
+}
+.update-page-title {
+	font-family: 'Outfit', sans-serif;
 }
 
 .update-form {	
@@ -20,7 +24,8 @@
 	margin-bottom: 10px;
 	height: 25px;
 }
-.update-info-button {
+
+#update-info-button {
 	margin-top: 25px;
 	width: 150px;
 	font-family: 'Outfit', sans-serif;
@@ -29,7 +34,7 @@
 	background-color: cadetblue;
 }
 
-.delete-user-button {
+#delete-user-button {
 	margin-top: 25px;
 	width: 150px;
 	font-family: 'Outfit', sans-serif;
