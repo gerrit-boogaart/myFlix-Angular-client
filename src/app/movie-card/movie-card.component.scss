@@ -8,9 +8,8 @@
  	width: 300px;
  	height: 75%;
  	margin: 10px;
-	//  padding-bottom: 30px;
-	 background-color: rgb(255, 255, 250);
-	 font-family: 'Outfit', sans-serif;
+	background-color: rgb(255, 255, 250);
+	font-family: 'Outfit', sans-serif;
 }
 
 .card-title {
@@ -20,15 +19,43 @@
 .movie-img {
 	width: 280px;
 	height: 420px;
+	margin-bottom: -10px;
 }
 
 .card-actions {
-	text-align: center;
-
+	text-align: left;
 }
 
 .action-button {
 	font-family: 'Outfit', sans-serif;
 	font-weight: bold;
 	color: black;
+}
+
+.favorite-button { 
+	color: black;
+	position: absolute;
+	margin-top: 45px;
+	margin-left: 255px;
+	font-size: 40px;
+	opacity: 1;
+}
+
+.favorite-button:hover {
+	cursor: pointer;
+	opacity: .75;
+}
+
+.favorite-active { 
+	color: red;
+	position: absolute;
+	margin-top: 45px;
+	margin-left: 255px;
+	font-size: 40px;	
+	opacity: 1;
+}
+
+.favorite-active:hover {
+	cursor: pointer;
+	opacity: .75;
 }

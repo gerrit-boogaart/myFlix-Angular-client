@@ -10,7 +10,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
   styleUrls: ['./movie-card.component.scss'],
-  // styles: ['favorite { background-color:red }']
 })
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
@@ -33,6 +32,14 @@ export class MovieCardComponent implements OnInit {
       this.movies = resp;
       return this.movies;
     });
+  }
+
+  setFavoriteStatus(movieId: any): any {
+    if (this.user.favorites.includes(movieId)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getFavoriteMovies(): void {

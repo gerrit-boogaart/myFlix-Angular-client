@@ -3,6 +3,13 @@
 		<mat-dialog-content>
 			<mat-card-title class="card-title">{{movie.Title}}</mat-card-title>
 			<mat-card-subtitle><img src={{movie.ImagePath}} class="movie-img"></mat-card-subtitle>
+			<mat-icon *ngIf="!setFavoriteStatus(movie._id)" (click)="favoriteMovie(movie._id)" class="favorite-button"
+				matTooltip="Add to favorites" matTooltipPosition="left">
+				add_circle</mat-icon>
+			<mat-icon *ngIf="setFavoriteStatus(movie._id)" (click)="favoriteMovie(movie._id)" class="favorite-active"
+				matTooltip="Remove from favorites" matTooltipPosition="left">
+				favorite
+			</mat-icon>
 			<mat-card-actions class="card-actions">
 
 				<button class="action-button" mat-button (click)="openGenreDialog(movie.Genre.Name, movie.Genre.Description)"
@@ -20,8 +27,7 @@
 					Synopsis
 				</button>
 
-				<!-- [(ngModel)]="movie._id" -->
-				<mat-icon (click)="favoriteMovie(movie._id)">favorite_border</mat-icon>
+
 			</mat-card-actions>
 		</mat-dialog-content>
 	</mat-card>

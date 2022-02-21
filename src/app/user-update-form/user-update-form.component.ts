@@ -77,13 +77,11 @@ export class UserUpdateFormComponent implements OnInit {
       if (confirm('Are you sure you want to delete your account?')) {
         this.fetchApiData.deleteUser(currentUser).subscribe((response) => {
           console.log(response);
-          // this.user = resp;
-          // console.log(this.user);
+          localStorage.clear();
+          this.router.navigate(['welcome']);
           this.snackBar.open('User Deleted!', 'OK', {
             duration: 2000
           });
-          localStorage.clear();
-          this.router.navigate(['welcome']);
         }, (response) => {
           this.snackBar.open(JSON.stringify(response), 'OK', {
             duration: 2000

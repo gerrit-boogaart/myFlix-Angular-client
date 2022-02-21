@@ -36,10 +36,10 @@ export class NavigationBarComponent implements OnInit {
     if (confirm('Are you sure you want to logout?')) {
       localStorage.clear();
       this.loggedIn = false;
+      this.router.navigate(['welcome']);
       this.snackBar.open('User Logged Out', 'OK', {
         duration: 2000
       });
-      this.router.navigate(['welcome']);
     }
   }
 
