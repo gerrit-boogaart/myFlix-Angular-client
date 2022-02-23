@@ -1,3 +1,8 @@
+/**
+ * Renders current user's profile info and fields where users can update this info
+ * @module UserUpdateFromComponent
+*/
+
 import { Component, OnInit, Input } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,9 +15,6 @@ import { Router } from '@angular/router';
 })
 export class UserUpdateFormComponent implements OnInit {
   user: any = {};
-
-  // @Input() updatedUserData = { Username: '', Email: '', Birthday: '' };
-  // @Input() userDetails = { Username: '', Password: '', Email: '', Birthday: '' };
 
   userDetails: any = {
     Username: this.user.Username,
@@ -27,10 +29,19 @@ export class UserUpdateFormComponent implements OnInit {
     public router: Router,
   ) { }
 
+  /**
+   * Fetches user's info on page load
+   * @function ngOnInit
+   */
   ngOnInit(): void {
     this.getUserInfo();
   }
 
+  /**
+   * Gets current user from local storage
+   * Fetches currents user's info from API
+   * @function getUserInfo
+   */
   getUserInfo(): void {
     const user = localStorage.getItem('user');
     if (user) {
@@ -41,6 +52,14 @@ export class UserUpdateFormComponent implements OnInit {
     }
   }
 
+  /**
+   * Gets current user form local storage
+   * Binds each field to different keys in user object
+   * Updates user info in database with new values provided
+   * Shows status in snackBar
+   * Navigates to /user
+   * @function submitUpdate
+   */
   submitUpdate(): void {
     const user = localStorage.getItem('user');
     const updatedUserData = {
@@ -72,6 +91,14 @@ export class UserUpdateFormComponent implements OnInit {
     }
   }
 
+  /**
+   * Gets current user form local storage
+   * Removes user object from database
+   * Shows status in snackBar
+   * Navigates to /welcome
+   * @function submitUpdate
+   * @param currentUser
+   */
   deleteCurrentUser(currentUser: any): void {
     const user = localStorage.getItem('user'); {
       if (confirm('Are you sure you want to delete your account?')) {

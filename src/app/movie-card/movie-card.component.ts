@@ -1,3 +1,9 @@
+/**
+ * Renders list of movies from API with links to dialogs containing specific info about each
+ * Allows user to add or remove movies from their favorite
+ * @module MovieCardComponent
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
@@ -22,11 +28,20 @@ export class MovieCardComponent implements OnInit {
     public snackBar: MatSnackBar,
   ) { }
 
+  /**
+   * Fetches list of movies and user favorites on page load
+   * @function ngOnInit
+   * */
   ngOnInit(): void {
     this.getMovies();
     this.getFavoriteMovies();
   }
 
+  /**
+   * Fetches data on all movies from API
+   * @function getAllMovies
+   * @return movie data from API
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -34,6 +49,12 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Checks wether movieId is included in user's favorites
+   * @function setFavoriteStatus
+   * @param movieId 
+   * @return boolean
+   */
   setFavoriteStatus(movieId: any): any {
     if (this.user.favorites.includes(movieId)) {
       return true;
@@ -42,6 +63,11 @@ export class MovieCardComponent implements OnInit {
     }
   }
 
+  /**
+   * Fetches list of user's favorite movies
+   * @function getFavoriteMovies
+   * @return list of movieId's for movies user has favorited
+   */
   getFavoriteMovies(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.user.favorites = resp.FavoriteMovies;
@@ -49,6 +75,15 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Allows user to add/remove movie from favorites
+   * Searches favorites array for movieId
+   * If movieId is already in user's favorites clicking on icon will remove it
+   * If movieId is not in user's favorites clicking on icon will add it
+   * Opens snackBar to show status based on conditional 
+   * @function favoriteMovie 
+   * @param _id 
+   */
   favoriteMovie(_id: string): void {
     const userFavorites = this.user.favorites;
     // searches array and deletes favorite if movie id already exists
@@ -75,6 +110,13 @@ export class MovieCardComponent implements OnInit {
 
   }
 
+  /**
+   * Passes data about movie genre to GenreCardComponent
+   * Opens dialog displaying this data
+   * @function openGenreDialog
+   * @param name 
+   * @param description 
+   */
   openGenreDialog(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: { name, description },
@@ -82,6 +124,14 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Passes data about movie director to DirectorCardComponent
+   * Opens dialog displaying this data
+   * @function openDirectorDialog
+   * @param name 
+   * @param bio 
+   * @param birth 
+   */
   openDirectorDialog(name: string, bio: string, birth: string): void {
     this.dialog.open(DirectorCardComponent, {
       data: { name, bio, birth },
@@ -89,6 +139,14 @@ export class MovieCardComponent implements OnInit {
     });
   }
 
+  /**
+   * Passes data about movie synopsis to SynopsisCardComponent
+   * Opens dialog displaying this data
+   * @function openSynopsisDialog
+   * @param title 
+   * @param director 
+   * @param description 
+   */
   openSynopsisDialog(title: string, director: string, description: string,): void {
     this.dialog.open(SynopsisCardComponent, {
       data: { title, director, description },

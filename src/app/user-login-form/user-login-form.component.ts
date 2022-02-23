@@ -1,3 +1,8 @@
+/**
+ * Renders form allowing existing user to login
+ * @module UserLoginFormComponent
+*/
+
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
@@ -9,6 +14,7 @@ import { Router } from '@angular/router';
   templateUrl: './user-login-form.component.html',
   styleUrls: ['./user-login-form.component.scss']
 })
+
 export class UserLoginFormComponent implements OnInit {
 
   @Input() userDetails = { Username: '', Password: '' }
@@ -23,6 +29,13 @@ export class UserLoginFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Sets generated user token in local storage
+   * Sets user in local storage
+   * Shows status in snackBar
+   * Navigates to /movies
+   * @function userLogin
+   */
   userLogin(): void {
     this.fetchApiData.Login(this.userDetails).subscribe((response) => {
       this.dialogRef.close();

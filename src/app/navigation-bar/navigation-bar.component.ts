@@ -1,3 +1,8 @@
+/**
+ * Renders navigation bar using paths from app.module.ts
+ * @module NavigationBarComponent
+*/
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -16,22 +21,39 @@ export class NavigationBarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
   }
 
+  /**
+   * Checks if user token exists in local storage
+   * @function ngDoCheck
+   */
   ngDoCheck(): void {
     const token = localStorage.getItem('token')
     if (token) this.loggedIn = true;
   }
 
+  /**
+   * Navigates to /user 
+   * @function navigateUserProfile
+   */
   navigateUserProfile(): void {
     this.router.navigate(['user']);
   }
 
+  /**
+   * Navigates to /movies 
+   * @function navigateMovies
+   */
   navigateMovies(): void {
     this.router.navigate(['movies']);
   }
 
+  /**
+   * Logs out current user
+   * Clears local storage
+   * Navigates to /welcome
+   * @function userLogout
+   */
   userLogout(): void {
     if (confirm('Are you sure you want to logout?')) {
       localStorage.clear();

@@ -1,3 +1,8 @@
+/**
+ * Renders dialog fields where users can enter their info to register for a user account
+ * @module UserUpdateFromComponent
+*/
+
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 // import API call
@@ -25,6 +30,11 @@ export class UserRegistrationFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Sends newly entered user info to database
+   * Opens snackBar showing status
+   * @function registerUser
+   */
   registerUser(): void {
     this.fetchApiData.userRegistration(this.userDetails).subscribe((response) => {
       // successful user registration logic
