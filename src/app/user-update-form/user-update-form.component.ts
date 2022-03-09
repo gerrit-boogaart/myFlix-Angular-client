@@ -100,21 +100,19 @@ export class UserUpdateFormComponent implements OnInit {
    * @param currentUser
    */
   deleteCurrentUser(currentUser: any): void {
-    const user = localStorage.getItem('user'); {
-      if (confirm('Are you sure you want to delete your account?')) {
-        this.fetchApiData.deleteUser(currentUser).subscribe((response) => {
-          console.log(response);
-          localStorage.clear();
-          this.router.navigate(['welcome']);
-          this.snackBar.open('User Deleted!', 'OK', {
-            duration: 2000
-          });
-        }, (response) => {
-          this.snackBar.open(JSON.stringify(response), 'OK', {
-            duration: 2000
-          });
+
+    if (confirm('Are you sure you want to delete your account?')) {
+      this.fetchApiData.deleteUser(currentUser).subscribe((response) => {
+        console.log(response);
+
+      }, (response) => {
+        localStorage.clear();
+        this.router.navigate(['welcome']);
+        this.snackBar.open('User Deleted!', 'OK', {
+          duration: 2000
         });
-      }
+      });
+
     }
   }
 

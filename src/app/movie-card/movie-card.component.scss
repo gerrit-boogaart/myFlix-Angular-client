@@ -1,13 +1,21 @@
+.body {
+	height: 100vh;
+}
+
 .movie-list {
 	display: flex;
 	overflow: auto;
+	
 }
 
 .movie-card {
 	border: 1px solid rgb(199, 199, 199);
  	width: 300px;
  	height: 75%;
- 	margin: 10px;
+ 	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	margin-bottom: auto;
 	background-color: rgb(255, 255, 250);
 	font-family: 'Outfit', sans-serif;
 }
@@ -23,7 +31,7 @@
 }
 
 .card-actions {
-	text-align: left;
+	text-align: center;
 }
 
 .action-button {
@@ -34,10 +42,8 @@
 
 .favorite-button { 
 	color: black;
-	position: absolute;
-	margin-top: 45px;
-	margin-left: 255px;
-	font-size: 40px;
+	margin-left: 240px;
+	font-size: 35px;
 	opacity: 1;
 }
 
@@ -48,10 +54,8 @@
 
 .favorite-active { 
 	color: red;
-	position: absolute;
-	margin-top: 45px;
-	margin-left: 255px;
-	font-size: 40px;	
+	margin-left: 240px;
+	font-size: 35px;	
 	opacity: 1;
 }
 
